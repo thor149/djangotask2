@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% for blog in blogs %}
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">Title: {{ blog.title }}</h2>
+        <h3>Category: {{ blog.category }}</h3>
+        <img src="{{ blog.featured_image.url }}" alt="Profile Image" class="profile-img">
+        <div class="dashboard-info">
+                <ul class="dashboard-info">
+                    <li><p><strong>Summary:</strong> {{ blog.summary }}...</p></li>
+                    <li><p><strong>Content:</strong> {{ blog.content }}</p></li>
+                    <li><p><strong>Author:</strong>{{blog.author}}</p></li>
+                    {% if request.user.profile.account_user_type == 'doctor' %}
+                        {% if request.user.profile == blog.author %}
+                            <li><a href="{% url 'updateblog' blog.id %}"><button class="form-button">Edit</button></a></li>
+                            <li><a href="{% url 'deleteblog' blog.id %}"><button class="form-button">Delete</button></a></li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>

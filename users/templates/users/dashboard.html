@@ -1,0 +1,23 @@
+{% include 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">Hi, {{ user.first_name }} {{ user.last_name }}</h2>
+        <img src="{{ profile.profile_image.url }}" alt="Profile Image" class="profile-img">
+        <ul class="dashboard-info">
+            <li><p><strong>Username:</strong> {{ user.username }}</p></li>
+            <li><p><strong>Email Address:</strong> {{ user.email }}</p></li>
+            <li><p><strong>Address:</strong> {{ profile.address }}</p></li>
+            <li><p><strong>User Type:</strong> {{ profile.get_account_user_type_display }}</p></li>
+        </ul>
+    </div>
+</body>
+</html>

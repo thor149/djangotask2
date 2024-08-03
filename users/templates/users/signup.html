@@ -1,0 +1,35 @@
+{% include 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="form-container">
+        <h2 class="form-title">Signup</h2>
+        <form action="" method="POST" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+            {% if messages %}
+                <div class="message-container">
+                    {% for message in messages %}
+                        <div class="message">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {{ profile_form.as_p }}
+            {{ form.as_p }}
+            <button type="submit" class="form-button">Sign Up</button>
+            <div class="form-footer">
+                <span>Already have an account?</span>
+                <a href="{% url 'login' %}" class="form-link">Login</a>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

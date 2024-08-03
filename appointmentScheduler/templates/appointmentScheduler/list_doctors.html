@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% for doctor in doctors %}
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">Name: {{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
+        <img src="{{ doctor.profile_image.url }}" alt="{{ doctor.user.username }}" class="profile-img">
+        <div class="dashboard-info">
+            <ul class="dashboard-info">
+                <li><a href="{% url 'book_appointment' doctor.id %}">Book Appointment</a></li>
+            </ul>
+        </div> 
+    </div>
+    {% endfor %}
+</body>
+</html>

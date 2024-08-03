@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body>
+    <ul class="navbar">
+        <!-- Add more menu items as needed -->
+        {% if request.path == '/login/' %}
+        <li><h2 class="title">Login Page</h2></li>
+        {% elif request.path == '/register/' %}
+        <li><h2 class="title">Signup Page</h2></li>
+        {% elif request.path == '/dashboard/' %}
+        <li><h2 class="title">Dashboard</h></li>
+        {% elif request.path == '/blog/all-blog' or request.path == '/blog/' %}
+        <li><h2 class="title">Blogs Page</h></li>
+        {% endif%}
+
+        {% if request.user.is_authenticated %}
+        
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        {% if profile %}
+            <li><a href="{% url 'update' profile.id %}">Update Profile</a></li>
+        {% endif %}
+        
+        
+        <li><a href="{% url 'allblog' %}">Blogs</a></li>
+
+        {% if request.user.profile.account_user_type == 'doctor' %}
+        <li><a href="{% url 'createblog' %}">Create Blog</a></li>
+        <li><a href="{% url 'blogs' %}"> My Blogs</a></li>
+        {% else %}
+        <!-- <li><a href="{% url 'list_doctors' %}">Book an Appointment</a></li> -->
+        {% endif %}
+        
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'homepage' %}">Homepage</a></li>
+        {% endif %}
+    </ul>
+</body>
+</html>

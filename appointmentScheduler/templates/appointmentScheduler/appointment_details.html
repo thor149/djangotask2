@@ -1,0 +1,22 @@
+{% include 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">Appointment Details</h2>
+        <ul class="dashboard-info">
+            <li><p><strong>Doctor:</strong> {{ appointment.doctor.user.first_name }} {{ appointment.doctor.user.last_name }}</p></li>
+            <li><p><strong>Appointment Date:</strong> {{ appointment.appointment_date }}</p></li>
+            <li><p><strong>Start Time:</strong> {{ start_time_local|time:"P" }}</p></li>
+            <li><p><strong>End Time:</strong> {{ end_time_local|time:"P" }}</p></li>
+        </ul>
+    </div>
+</body>
+</html>

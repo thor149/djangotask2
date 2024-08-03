@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Blog</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+{% block content %}
+  <body>
+    {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <form method="POST" class="form-container">
+        {% csrf_token %}
+        <h2 class="form-title">Are you sure you want to delete the blog titled "{{ blog.title }}"?</h2> 
+        <button type="submit" class="form-button">Confirm</button>
+        <a href="{% url 'blogs' %}">Cancel</a>
+    </form>
+</body>
+{% endblock %}
+</html>
+
