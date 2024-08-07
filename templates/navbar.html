@@ -34,9 +34,8 @@
         <li><a href="{% url 'createblog' %}">Create Blog</a></li>
         <li><a href="{% url 'blogs' %}"> My Blogs</a></li>
         {% else %}
-        <!-- <li><a href="{% url 'list_doctors' %}">Book an Appointment</a></li> -->
+        <li><a href="{% url 'list_doctors' %}">Book an Appointment</a></li>
         {% endif %}
-        
         <li><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
         <li><a href="{% url 'homepage' %}">Homepage</a></li>
